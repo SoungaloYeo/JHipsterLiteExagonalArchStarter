@@ -12,28 +12,28 @@ import com.mycompany.myapp.shared.error.domain.Assert;
 @Repository
 class SpringDataBeersRepository implements BeersRepository {
 
-  private final JpaBeersRepository beers;
+  private final JpaBeersRepository beersRepository;
 
-  public SpringDataBeersRepository(JpaBeersRepository beers) {
-    this.beers = beers;
+  public SpringDataBeersRepository(JpaBeersRepository beersRepository) {
+    this.beersRepository = beersRepository;
   }
 
   @Override
   public void save(Beer beer) {
     Assert.notNull("beer", beer);
 
-    beers.save(BeerEntity.from(beer));
+    beersRepository.save(BeerEntity.from(beer));
   }
 
   @Override
   public Beers catalog() {
-    return new Beers(beers.findBySellingState(BeerSellingState.SOLD).stream().map(BeerEntity::toDomain).toList());
+    return new Beers(beersRepository.findBySellingState(BeerSellingState.SOLD).stream().map(BeerEntity::toDomain).toList());
   }
 
   @Override
   public Optional<Beer> get(BeerId beer) {
     Assert.notNull("beer", beer);
 
-    return beers.findById(beer.get()).map(BeerEntity::toDomain);
+    return beersRepository.findById(beer.get()).map(BeerEntity::toDomain);
   }
 }

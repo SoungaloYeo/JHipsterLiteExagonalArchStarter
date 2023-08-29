@@ -15,15 +15,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class BeersApplicationService {
 
-  private final BeersRepository beers;
+  private final BeersRepository beersRepository;
   private final BeersCreator creator;
   private final BeersRemover remover;
 
-  public BeersApplicationService(BeersRepository beers) {
-    this.beers = beers;
+  public BeersApplicationService(BeersRepository beersRepository) {
+    this.beersRepository = beersRepository;
 
-    creator = new BeersCreator(beers);
-    remover = new BeersRemover(beers);
+    creator = new BeersCreator(beersRepository);
+    remover = new BeersRemover(beersRepository);
   }
 
   @Transactional
@@ -31,7 +31,7 @@ public class BeersApplicationService {
   public Beer create(BeerToCreate beerToCreate) {
     return creator.create(beerToCreate);
   }
-  
+
   @Transactional
   @PreAuthorize("can('remove', #beer)")
   public void remove(BeerId beer) {
@@ -40,7 +40,7 @@ public class BeersApplicationService {
 
   @Transactional(readOnly = true)
   public Beers catalog() {
-    return beers.catalog();
+    return beersRepository.catalog();
   }
 
 }

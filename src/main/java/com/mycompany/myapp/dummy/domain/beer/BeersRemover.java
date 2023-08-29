@@ -5,20 +5,20 @@ import com.mycompany.myapp.shared.error.domain.Assert;
 
 public class BeersRemover {
 
-  private final BeersRepository beers;
+  private final BeersRepository beersRepository;
 
-  public BeersRemover(BeersRepository beers) {
-    Assert.notNull("beers", beers);
+  public BeersRemover(BeersRepository beersRepository) {
+    Assert.notNull("beers", beersRepository);
 
-    this.beers = beers;
+    this.beersRepository = beersRepository;
   }
 
   public void remove(BeerId id) {
     Assert.notNull("id", id);
 
-    Beer beer = beers.get(id).orElseThrow(() -> new UnknownBeerException(id));
+    Beer beer = beersRepository.get(id).orElseThrow(() -> new UnknownBeerException(id));
 
     beer.removeFromSell();
-    beers.save(beer);
+    beersRepository.save(beer);
   }
 }
