@@ -48,5 +48,6 @@ docker compose -f src/main/docker/postgresql.yml up -d
 - [Cucumber authentication](documentation/cucumber-authentication.md)
 - [Dummy](documentation/dummy.md)
 - [JWT basic auth](documentation/jwt-basic-auth.md)
+- [Rest pagination](documentation/rest-pagination.md)
 
 <!-- jhipster-needle-documentation -->
