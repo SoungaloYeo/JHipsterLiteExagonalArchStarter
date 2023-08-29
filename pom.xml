@@ -29,6 +29,7 @@
     <cucumber.version>7.13.0</cucumber.version>
     <json-web-token.version>0.11.5</json-web-token.version>
     <springdoc-openapi-starter-webmvc.version>2.2.0</springdoc-openapi-starter-webmvc.version>
+    <commons-lang3.version>3.13.0</commons-lang3.version>
   </properties>
 
   <dependencyManagement>
@@ -54,11 +55,6 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-configuration-processor</artifactId>
       <optional>true</optional>
-    </dependency>
-
-    <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-lang3</artifactId>
     </dependency>
 
     <dependency>
@@ -137,6 +133,12 @@
       <groupId>org.springdoc</groupId>
       <artifactId>springdoc-openapi-starter-webmvc-api</artifactId>
       <version>${springdoc-openapi-starter-webmvc.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>${commons-lang3.version}</version>
     </dependency>
 
     <dependency>
